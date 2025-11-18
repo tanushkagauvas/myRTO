@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Payments - MyRTO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* All styles copied directly from your renewal.html */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            height: 32px;
+            width: 32px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .logo-text {
+            color: white;
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        /* Styles for Status & Validity Badges */
+        .status {
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .status-approved, .status-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-rejected, .status-failed {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .validity-active {
+            color: #28a745;
+        }
+
+        .validity-expired {
+            color: #dc3545;
+        }
+    </style>
+</head>
+
+<body class="h-full">
+
+    <div class="flex h-screen">
+
+        <aside class="w-64 flex flex-col bg-indigo-800 text-indigo-100 shadow-xl">
+            <div class="p-6">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                        </path>
+                    </svg>
+                    <span class="logo-text">MyRTO</span>
+                </div>
+            </div>
+
+            <nav class="flex-1 px-4 py-4 space-y-2">
+                <a href="dashboard.html"
+                    class="flex items-center space-x-3 px-3 py-2 rounded-lg text-indigo-200 hover:text-white hover:bg-indigo-700 transition-colors duration-200">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                    </svg>
+                    <span class="font-medium">Dashboard</span>
+                </a>
+
+                <details class="group" open>
+                    <summary
+                        class="flex items-center justify-between space-x-3 px-3 py-2 rounded-lg hover:bg-indigo-700 cursor-pointer transition-colors duration-200">
+                        <div class="flex items-center space-x-3">
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="font-medium">Services</span>
+                        </div>
+                        <svg class="h-5 w-5 transform group-open:rotate-90 transition-transform duration-200"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </summary>
+
+                    <div class="mt-2 space-y-1 pl-9">
+                        <details>
+                            <summary
+                                class="flex items-center justify-between px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white cursor-pointer transition-colors duration-200">
+                                <span>License Services</span>
+                                <svg class="h-5 w-5 transform open:rotate-90 transition-transform duration-200"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="2.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </summary>
+                            <div class="mt-1 space-y-1 pl-4">
+                                <a href="#"
+                                    class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Apply
+                                    for learner's license</a>
+                                <a href="#"
+                                    class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Check
+                                    Licence status</a>
+                                <a href="#"
+                                    class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Renew
+                                    driving license</a>
+                                <a href="#"
+                                    class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Check
+                                    Licence status</a>
+                            </div>
+                        </details>
+
+                        <details open>
+                            <summary
+                                class="flex items-center justify-between px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white cursor-pointer transition-colors duration-200">
+                                <span>Vehicle Services</span>
+                                <svg class="h-5 w-5 transform open:rotate-90 transition-transform duration-200"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="2.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </summary>
+                            <div class="mt-1 space-y-1 pl-4">
+                                <a href="vehiclereg.html"
+                                    class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">New
+                                    vehicle registration</a>
+                                <a href="renewal.html"
+                                    class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Renewal
+                                    of registration</a>
+                                <a href="transfer.html"
+                                    class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-2A00 text-sm">Transfer
+                                    of ownership</a>
+                                <a href="my_vehicles.html"
+                                    class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Check
+                                    vehicle details</a>
+                            </div>
+                        </details>
+                        
+                    </div>
+                </details>
+
+                <a href="dashboard.html#applications"
+                    class="flex items-center space-x-3 px-3 py-2 rounded-lg text-indigo-200 hover:text-white hover:bg-indigo-700 transition-colors duration-200">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125" />
+                    </svg>
+                    <span class="font-medium">My Applications</span>
+                </a>
+
+                <a href="my_payments.html"
+                    class="flex items-center space-x-3 px-3 py-2 rounded-lg text-white bg-indigo-700 transition-colors duration-200"
+                    aria-current="page">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3.75m10.5-5.25h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008v-.008zM4.5 7.5h15a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25v-7.5A2.25 2.25 0 014.5 7.5z" />
+                    </svg>
+                    <span class="font-medium">My Payments</span>
+                </a>
+            </nav>
+
+            <div class="mt-auto p-4">
+                <div class="flex items-center justify-between p-3 bg-indigo-700 rounded-lg">
+                    <div>
+                        <p class="text-sm">Welcome,</p>
+                        <p id="user-name" class="font-medium text-white">User</p>
+                    </div>
+                    <button id="logout-button"
+                        class="p-2 rounded-md text-indigo-200 hover:bg-red-500 hover:text-white transition-all duration-300 ease-in-out"
+                        title="Log Out">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto">
+            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+
+                <div class="mb-6 px-4 sm:px-0">
+                    <h1 class="text-3xl font-bold text-gray-900">My Payments</h1>
+                </div>
+
+                <div class="mb-6 px-4 sm:px-0">
+                    <div class="flex flex-col md:flex-row gap-4 justify-between">
+
+                        <div class="relative flex-grow md:w-1/2">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </div>
+                            <input type="text" id="searchInput"
+                                class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                placeholder="Search by service or transaction ID...">
+                        </div>
+
+                        <div class="flex-shrink-0">
+                            <select id="sortSelect"
+                                class="block w-full md:w-auto pl-3 pr-10 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option value="newest">Sort by: Newest</option>
+                                <option value="oldest">Sort by: Oldest</option>
+                                <option value="amount_high">Amount: High to Low</option>
+                                <option value="amount_low">Amount: Low to High</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <p id="loadingMessage" class="mt-2 text-gray-600 px-4 sm:px-0">Loading your payment history...</p>
+
+                <div class="px-4 sm:px-0">
+                    <div class="flex flex-col">
+                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Transaction ID</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Service</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vehicle Reg. No.</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="paymentTableBody" class="bg-white divide-y divide-gray-200">
+                                            </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+<script>
+    // --- 1. Get references to DOM elements ---
+    const loadingMsg = document.getElementById("loadingMessage");
+    const paymentTableBody = document.getElementById("paymentTableBody"); // Changed
+    const searchInput = document.getElementById("searchInput");
+    const sortSelect = document.getElementById("sortSelect");
+
+    // --- 2. Helper: Debounce Function (Unchanged) ---
+    function debounce(func, delay) {
+        let timeout;
+        return function(...args) {
+            const context = this;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(context, args), delay);
+        };
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // --- 3. User & Auth ---
+        // **MODIFIED**: Using consistent user object from localStorage
+        let userFullName = 'User';
+        let userId = null;
+        let userData = null;
+
+        try {
+            userData = JSON.parse(localStorage.getItem('myRtoUser'));
+
+            if (userData && userData.fullName && userData.id) {
+                userFullName = userData.fullName;
+                userId = userData.id;
+            } else {
+                // If data is missing or malformed, redirect
+                window.location.href = 'log.html';
+                return; // Stop further execution
+            }
+        } catch (error) {
+            console.error('Error parsing user data, redirecting to login.', error);
+            window.location.href = 'log.html';
+            return; // Stop further execution
+        }
+
+        // Set user name in sidebar
+        document.getElementById('user-name').textContent = userFullName;
+
+
+        // --- 4. Logout Logic ---
+        const logoutButton = document.getElementById('logout-button');
+        logoutButton.addEventListener('click', () => {
+            localStorage.removeItem('myRtoUser'); // Remove the single user object
+            window.location.href = 'log.html'; // Redirect to login
+        });
+
+        // --- 5. Event Listeners (Unchanged logic, adapted function name) ---
+        const debouncedFetch = debounce(() => fetchPaymentData(userId), 300);
+        searchInput.addEventListener('input', debouncedFetch);
+        sortSelect.addEventListener('change', () => fetchPaymentData(userId));
+
+        // --- 6. Initial Data Fetch (Adapted function name) ---
+        fetchPaymentData(userId);
+    });
+
+    // --- 7. Main Data Fetch Function (ADAPTED) ---
+    async function fetchPaymentData(userId) {
+        if (!userId) {
+            console.error("No user ID found. Cannot fetch payments.");
+            return;
+        }
+
+        const searchTerm = searchInput.value;
+        const sortBy = sortSelect.value;
+
+        loadingMsg.textContent = "Loading your payment history...";
+        loadingMsg.style.color = "#4B5563"; // Default text-gray-600
+        loadingMsg.style.display = 'block';
+        paymentTableBody.innerHTML = ""; // Clear old results
+
+        try {
+            // **NEW ENDPOINT**
+            const url = new URL(`http://localhost:3000/api/payments/user/${userId}`);
+            url.searchParams.append('search', searchTerm);
+            url.searchParams.append('sort', sortBy);
+            
+            const response = await fetch(url.toString());
+
+            if (!response.ok) {
+                 if (response.status === 404) {
+                    // Handle 404 (No payments found) gracefully
+                    const data = await response.json();
+                    renderPayments([]); // Pass an empty array to render logic
+                    return;
+                }
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const payments = await response.json();
+            
+            // --- 8. Call Render Logic (Adapted) ---
+            renderPayments(payments);
+
+        } catch (error) {
+            console.error("Failed to fetch payments:", error);
+            loadingMsg.textContent = "Error loading payment history. Please try again later.";
+            loadingMsg.style.color = "#DC2626"; // text-red-600
+        }
+    }
+
+    // --- 9. "Render" Function (ADAPTED) ---
+    function renderPayments(paymentsToDisplay) {
+        
+        // --- A. Handle No Results ---
+        if (paymentsToDisplay.length === 0) {
+            if (searchInput.value) {
+                loadingMsg.textContent = "No payments match your search.";
+            } else {
+                loadingMsg.textContent = "You do not have any payment history.";
+            }
+            loadingMsg.style.display = 'block';
+        } else {
+            loadingMsg.style.display = 'none';
+        }
+
+        // --- B. Call the Populate Function (Adapted) ---
+        populatePaymentTable(paymentsToDisplay);
+    }
+
+
+    // --- 10. Populates the HTML TABLE with data (ADAPTED) ---
+    function populatePaymentTable(payments) {
+        // paymentTableBody.innerHTML is already cleared in fetchPaymentData
+
+        payments.forEach(payment => {
+            const row = document.createElement("tr");
+
+            // Helper functions for formatting
+            const paymentDate = formatDate(payment.payment_date);
+            const paymentStatus = getStatusBadge(payment.payment_status);
+            const paymentAmount = new Intl.NumberFormat('en-IN', { 
+                style: 'currency', 
+                currency: 'INR' 
+            }).format(payment.amount);
+
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${payment.transaction_id}</td>
+                <td class="px-6 py-4 whitespace-nowrawrap text-sm text-gray-500">${paymentDate}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${payment.service_name}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${paymentAmount}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${paymentStatus}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${payment.registration_number || 'N/A'}</td>
+            `;
+            paymentTableBody.appendChild(row);
+        });
+    }
+
+    // --- 11. Helper Functions (Unchanged) ---
+
+    function formatDate(dateString) {
+        if (!dateString) return 'N/A';
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-IN', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric'
+        });
+    }
+
+    function getStatusBadge(status) {
+        // Adapted for payment statuses
+        if (status === 'Success' || status === 'Approved') {
+            return `<span class="status status-success">${status}</span>`;
+        }
+        if (status === 'Pending' || status === 'Submitted') {
+            return `<span class="status status-pending">${status}</span>`;
+        }
+        if (status === 'Failed' || status === 'Rejected') {
+            return `<span class="status status-failed">${status}</span>`;
+        }
+        return `<span class="status">${status || 'Unknown'}</span>`;
+    }
+
+    // getDateClass (from original) is not needed here, so it's removed.
+</script>
+</body>
+
+</html>

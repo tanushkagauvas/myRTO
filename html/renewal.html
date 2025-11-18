@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renew Registration - MyRTO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* All styles copied directly from your vehiclereg.html */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            height: 32px;
+            width: 32px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .logo-text {
+            color: white;
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        /* --- STYLES ADDED FROM DASHBOARD --- */
+        .dropdown-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.2s ease-out, margin-top 0.3s ease-out;
+            max-height: 0;
+            opacity: 0;
+            margin-top: 0 !important;
+        }
+
+        details[open]>.dropdown-content {
+            max-height: 400px;
+            /* Adjust as needed */
+            opacity: 1;
+            margin-top: 0.25rem !important;
+            /* Tailwind 'mt-1' */
+        }
+    </style>
+</head>
+
+<body class="h-full">
+
+    <div class="flex h-screen">
+
+        <aside class="w-64 flex flex-col bg-indigo-800 text-indigo-100 shadow-xl">
+            <div class="p-6">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                        </path>
+                    </svg>
+                    <span class="logo-text">MyRTO</span>
+                </div>
+            </div>
+
+            <nav class="flex-1 px-4 py-4 space-y-2">
+                <a href="dashboard.html"
+                    class="flex items-center space-x-3 px-3 py-2 rounded-lg text-indigo-200 hover:text-white hover:bg-indigo-700 transition-colors duration-200">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                    </svg>
+                    <span class="font-medium">Dashboard</span>
+                </a>
+
+                <details class="group" open>
+                    <summary
+                        class="flex items-center justify-between space-x-3 px-3 py-2 rounded-lg hover:bg-indigo-700 cursor-pointer transition-colors duration-200">
+                        <div class="flex items-center space-x-3">
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="font-medium">Services</span>
+                        </div>
+                        <svg class="h-5 w-5 transform group-open:rotate-90 transition-transform duration-200"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </summary>
+
+                    <div class="mt-2 space-y-1 pl-9">
+                        <details>
+                            <summary
+                                class="flex items-center justify-between px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white cursor-pointer transition-colors duration-200">
+                                <span>License Services</span>
+                                <svg class="h-5 w-5 transform open:rotate-90 transition-transform duration-200"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="2.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </summary>
+                            <div class="mt-1 space-y-1 pl-4 dropdown-content">
+                                <a href="llform.html"
+                                    class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Apply
+                                    for learner's license</a>
+                                <a href="profile.html"
+                                    class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Check
+                                    Licence status</a>
+                               
+                        </details>
+
+                        <details open>
+                            <summary
+                                class="flex items-center justify-between px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white cursor-pointer transition-colors duration-200">
+                                <span>Vehicle Services</span>
+                                <svg class="h-5 w-5 transform open:rotate-90 transition-transform duration-200"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="2.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </summary>
+                             <div class="mt-1 space-y-1 pl-4 dropdown-content">
+                                <a href="vehiclereg.html"
+                                    class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">New
+                                    vehicle registration</a>
+                                <a href="renewal.html"
+                                    class="block px-3 py-2 rounded-md text-white bg-indigo-700 transition-colors duration-200 text-sm font-medium" 
+                                    aria-current="page">Renewal
+                                    of registration</a>
+                                <a href="transfer.html"
+                                    class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Transfer
+                                    of ownership</a>
+
+                                <a href="my_vehicles.html"
+                                    class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Check
+                                    vehicle details</a>
+                            </div>
+                        </details>
+                    </div>
+                </details>
+
+                <a href="dashboard.html#applications"
+                    class="flex items-center space-x-3 px-3 py-2 rounded-lg text-indigo-200 hover:text-white hover:bg-indigo-700 transition-colors duration-200">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125" />
+                    </svg>
+                    <span class="font-medium">My Applications</span>
+                </a>
+                <a href="my_payments.html"
+                    class="flex items-center space-x-3 px-3 py-2 rounded-lg text-indigo-200 hover:text-white hover:bg-indigo-700 transition-colors duration-200">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                    </svg>
+                    <span class="font-medium">My Payments</span>
+                </a>
+            </nav>
+
+            <div class="mt-auto p-4">
+                <div class="flex items-center justify-between p-3 bg-indigo-700 rounded-lg">
+                    <div>
+                        <p class="text-sm">Welcome,</p>
+                        <p id="user-name" class="font-medium text-white">User</p>
+                    </div>
+                    <button id="logout-button"
+                        class="p-2 rounded-md text-indigo-200 hover:bg-red-500 hover:text-white transition-all duration-300 ease-in-out"
+                        title="Log Out">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto">
+            <div class="max-w-5xl mx-auto py-10 sm:px-6 lg:px-8">
+
+                <div class="w-full bg-white rounded-2xl shadow-lg">
+
+                    <div class="p-6 sm:p-8 border-b border-gray-200">
+                        <h1 class="text-3xl font-bold text-gray-900">Renew Vehicle Registration</h1>
+                        <p class="mt-2 text-gray-600">Please provide your vehicle and new insurance details to complete
+                            the renewal.</p>
+                    </div>
+
+                    <form id="renewal-form" class="p-6 sm:p-8 space-y-6">
+                        <div id="form-message" class="hidden p-4 mb-4 rounded-lg"></div>
+
+                        <h2 class="text-xl font-semibold text-gray-900">Vehicle to Renew</h2>
+                        <div>
+                            <label for="registration_number"
+                                class="block text-sm font-medium text-gray-700">Registration
+                                Number (e.g., MH12AB1234) <span class="text-red-500">*</span></label>
+                            <input type="text" id="registration_number" name="registration_number" required
+                                class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+
+                        <h2 class="text-xl font-semibold text-gray-900 border-t border-gray-200 pt-6">New Insurance
+                            Details</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="company_name" class="block text-sm font-medium text-gray-700">Insurance
+                                    Company <span class="text-red-500">*</span></label>
+                                <input type="text" id="company_name" name="company_name" required
+                                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="policy_number" class="block text-sm font-medium text-gray-700">Policy Number
+                                    <span class="text-red-500">*</span></label>
+                                <input type="text" id="policy_number" name="policy_number" required
+                                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <label for="policy_type" class="block text-sm font-medium text-gray-700">Policy Type
+                                    <span class="text-red-500">*</span></label>
+                                <select id="policy_type" name="policy_type" required
+                                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="Comprehensive">Comprehensive</option>
+                                    <option value="Third Party">Third Party</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="start_date" class="block text-sm font-medium text-gray-700">Policy Start
+                                    Date <span class="text-red-500">*</span></label>
+                                <input type="date" id="start_date" name="start_date" required
+                                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="end_date" class="block text-sm font-medium text-gray-700">Policy End Date
+                                    <span class="text-red-500">*</span></label>
+                                <input type="date" id="end_date" name="end_date" required
+                                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                        </div>
+
+                        <div class="pt-6 border-t border-gray-200 mt-8">
+                            <div class="flex justify-end">
+                                <button type="submit" id="submit-btn"
+                                    class="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700">
+                                    Submit Renewal
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- REPLACED: User & Auth (from your dashboard) ---
+            let userFullName = 'User';
+            let userId = null;
+            let userData = null;
+
+            try {
+                userData = JSON.parse(localStorage.getItem('myRtoUser'));
+
+                if (userData && userData.fullName && userData.id) {
+                    userFullName = userData.fullName;
+                    userId = userData.id; // This userId is now available to the whole script
+                } else {
+                    // No valid user data, redirect to login
+                    window.location.href = 'log.html';
+                    return; // Stop script execution
+                }
+            } catch (error) {
+                console.error('Error parsing user data, redirecting to login.', error);
+                window.location.href = 'log.html';
+                return; // Stop script execution
+            }
+
+            // Set user name in sidebar
+            document.getElementById('user-name').textContent = userFullName;
+
+
+            // --- REPLACED: Logout Logic (from your dashboard) ---
+            const logoutButton = document.getElementById('logout-button');
+            logoutButton.addEventListener('click', () => {
+                localStorage.removeItem('myRtoUser');
+                window.location.href = 'log.html';
+            });
+
+            // --- ADDED: Accordion Logic (from dashboard) ---
+            const serviceDropdowns = document.querySelectorAll('details.group > div.pl-9 > details');
+
+            serviceDropdowns.forEach(dropdown => {
+                dropdown.addEventListener('toggle', (event) => {
+                    if (dropdown.open) {
+                        // Close other open dropdowns at the same level
+                        serviceDropdowns.forEach(otherDropdown => {
+                            if (otherDropdown !== dropdown && otherDropdown.open) {
+                                otherDropdown.open = false;
+                            }
+                        });
+                    }
+                });
+            });
+
+            // --- ADDED: Auto-open parent dropdowns (from dashboard) ---
+            const activeLink = document.querySelector('nav a[aria-current="page"]');
+            if (activeLink) {
+                let parent = activeLink.closest('details');
+                while (parent) {
+                    parent.open = true;
+                    parent = parent.parentElement.closest('details');
+                }
+            }
+
+
+            // --- Renewal Form Logic (Original to this page) ---
+            const renewalForm = document.getElementById('renewal-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const messageEl = document.getElementById('form-message');
+
+            if (renewalForm) {
+                renewalForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Submitting...';
+                    messageEl.classList.add('hidden'); // Hide old messages
+
+                    // 1. Get the logged-in user's ID
+                    // We can now use the 'userId' variable from the auth block
+                    const loggedInUserId = userId; 
+
+                    // 2. Create the data object from the form
+                    const formData = new FormData(renewalForm);
+                    const data = Object.fromEntries(formData.entries());
+
+                    // 3. Add the user_id to the data object
+                    data.user_id = parseInt(loggedInUserId); // Use the variable
+
+                    try {
+                        const response = await fetch('http://localhost:3000/api/vehicles/renew', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        });
+
+                        const result = await response.json();
+
+                        if (response.ok) {
+                            // Success
+                            messageEl.textContent = result.message;
+                            // Add success classes
+                            messageEl.className = 'p-4 mb-4 rounded-lg bg-green-50 text-green-700 border border-green-200';
+                            messageEl.classList.remove('hidden');
+                            renewalForm.reset();
+                            // Redirect to dashboard after a short delay
+                            setTimeout(() => {
+                                window.location.href = 'dashboard.html#applications';
+                            }, 2000);
+                        } else {
+                            // Failure (e.g., 404, 403, 500)
+                            throw new Error(result.message);
+                        }
+                    } catch (error) {
+                        // Catch fetch errors or server error messages
+                        messageEl.textContent = error.message || 'Could not connect to server. Please try again.';
+                        // Add error classes
+                        messageEl.className = 'p-4 mb-4 rounded-lg bg-red-50 text-red-700 border border-red-200';
+                        messageEl.classList.remove('hidden');
+                    } finally {
+                        // Re-enable the button
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Submit Renewal';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

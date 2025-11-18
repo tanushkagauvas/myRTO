@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer of Ownership - MyRTO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            height: 32px;
+            width: 32px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .logo-text {
+            color: white;
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        /* --- STYLES ADDED FROM DASHBOARD --- */
+        .dropdown-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.2s ease-out, margin-top 0.3s ease-out;
+            max-height: 0;
+            opacity: 0;
+            margin-top: 0 !important;
+        }
+
+        details[open]>.dropdown-content {
+            max-height: 400px;
+            /* Adjust as needed */
+            opacity: 1;
+            margin-top: 0.25rem !important;
+            /* Tailwind 'mt-1' */
+        }
+
+        /* --- Styles for this form page --- */
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 9999px;
+            border: 2px solid #d1d5db;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .step-indicator-active {
+            border-color: #2563eb;
+            background-color: #2563eb;
+            color: white;
+        }
+
+        .step-indicator-complete {
+            border-color: #22c55e;
+            background-color: #22c55e;
+            color: white;
+        }
+
+        .step-line {
+            width: 100%;
+            height: 2px;
+            background-color: #d1d5db;
+        }
+
+        .step-line-complete {
+            background-color: #22c55e;
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step-active {
+            display: block;
+        }
+
+        /* Class for auto-filled, read-only data */
+        .read-only-field {
+            margin-top: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #374151;
+            padding: 0.75rem 1rem;
+            background-color: #f3f4f6;
+            border-radius: 0.5rem;
+            border: 1px solid #d1d5db;
+        }
+    </style>
+</head>
+
+<body class="h-full">
+    <div class="flex h-screen">
+        <aside class="w-64 flex flex-col bg-indigo-800 text-indigo-100 shadow-xl">
+            <div class="p-6">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                        </path>
+                    </svg>
+                    <span class="logo-text">MyRTO</span>
+                </div>
+            </div>
+            <nav class="flex-1 px-4 py-4 space-y-2">
+                <a href="dashboard.html"
+                    class="flex items-center space-x-3 px-3 py-2 rounded-lg text-indigo-200 hover:text-white hover:bg-indigo-700 transition-colors duration-200"><svg
+                        class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                    </svg><span class="font-medium">Dashboard</span></a>
+                <details class="group" open>
+                    <summary
+                        class="flex items-center justify-between space-x-3 px-3 py-2 rounded-lg hover:bg-indigo-700 cursor-pointer transition-colors duration-200">
+                        <div class="flex items-center space-x-3"><svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg><span class="font-medium">Services</span></div><svg
+                            class="h-5 w-5 transform group-open:rotate-90 transition-transform duration-200"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </summary>
+                    <div class="mt-2 space-y-1 pl-9">
+                        <details open>
+                            <summary
+                                class="flex items-center justify-between px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white cursor-pointer transition-colors duration-200">
+                                <span>Vehicle Services</span><svg
+                                    class="h-5 w-5 transform open:rotate-90 transition-transform duration-200"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="2.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </summary>
+                            <div class="mt-1 space-y-1 pl-4 dropdown-content">
+                                <a href="vehiclereg.html"
+                                    class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">New
+                                    vehicle registration</a>
+                                <a href="renewal.html"
+                                    class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Renewal
+                                    of registration</a>
+                                <a href="transfer.html"
+                                    class="block px-3 py-2 rounded-md text-white bg-indigo-700 transition-colors duration-200 text-sm font-medium"
+                                    aria-current="page">Transfer
+                                    of ownership</a>
+                                <a href="my_vehicles.html"
+                                    class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Check
+                                    vehicle details</a>
+                            </div>
+                        </details>
+                    </div>
+                </details>
+                <a href="dashboard.html#applications"
+                    class="flex items-center space-x-3 px-3 py-2 rounded-lg text-indigo-200 hover:text-white hover:bg-indigo-700 transition-colors duration-200"><svg
+                        class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125" />
+                    </svg><span class="font-medium">My Applications</span></a>
+                <a href="my_payments.html"
+                    class="flex items-center space-x-3 px-3 py-2 rounded-lg text-indigo-200 hover:text-white hover:bg-indigo-700 transition-colors duration-200"><svg
+                        class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                    </svg><span class="font-medium">My Payments</span></a>
+            </nav>
+            <div class="mt-auto p-4">
+                <div class="flex items-center justify-between p-3 bg-indigo-700 rounded-lg">
+                    <div>
+                        <p class="text-sm">Welcome,</p>
+                        <p id="user-name" class="font-medium text-white">User</p>
+                    </div>
+                    <button id="logout-button"
+                        class="p-2 rounded-md text-indigo-200 hover:bg-red-500 hover:text-white transition-all duration-300 ease-in-out"
+                        title="Log Out"><svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg></button>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto">
+            <div class="max-w-5xl mx-auto py-10 sm:px-6 lg:px-8">
+                <div class="w-full bg-white rounded-2xl shadow-lg">
+
+                    <div class="p-6 sm:p-8 border-b border-gray-200">
+                        <div id="wizard-header">
+                            <h1 class="text-3xl font-bold text-gray-900">Transfer of Ownership</h1>
+                            <div class="flex items-center justify-between mt-6 max-w-xl mx-auto">
+                                <div class="flex-1 flex flex-col items-center">
+                                    <div class="step-indicator step-indicator-active" id="step-ind-1">1</div>
+                                    <p class="text-xs mt-1 text-gray-500 font-medium">Vehicle & Seller</p>
+                                </div>
+                                <div class="step-line" id="step-line-1"></div>
+                                <div class="flex-1 flex flex-col items-center">
+                                    <div class="step-indicator" id="step-ind-2">2</div>
+                                    <p class="text-xs mt-1 text-gray-500">Buyer</p>
+                                </div>
+                                <div class="step-line" id="step-line-2"></div>
+                                <div class="flex-1 flex flex-col items-center">
+                                    <div class="step-indicator" id="step-ind-3">3</div>
+                                    <p class="text-xs mt-1 text-gray-500">Declaration</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="payment-header" class="hidden">
+                            <h1 class="text-3xl font-bold text-gray-900">Application Summary & Payment</h1>
+                        </div>
+                    </div>
+
+                    <form id="transfer-wizard-form" class="p-6 sm:p-8">
+                        <div id="form-error-message"
+                            class="hidden p-4 mb-4 bg-red-50 text-red-700 border border-red-200 rounded-lg"></div>
+
+                        <div id="step-1" class="form-step form-step-active space-y-6">
+                            <h2 class="text-xl font-semibold text-gray-900">Step 1: Vehicle & Seller Details</h2>
+                            <div>
+                                <label for="registration_number" class="block text-sm font-medium text-gray-700">Enter
+                                    Registration Number <span class="text-red-500">*</span></label>
+                                <input type="text" id="registration_number" name="registration_number" required
+                                    placeholder="e.g., MH12AB1234"
+                                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                <small id="reg-helper" class="text-xs text-gray-500">Press Tab or click outside to
+                                    auto-fill details.</small>
+                                <small id="reg-loading" class="hidden text-xs text-blue-500">Fetching details...</small>
+                            </div>
+
+                            <div id="seller-vehicle-details" class="hidden space-y-6">
+                                <hr>
+                                <h3 class="text-lg font-semibold text-gray-800">Vehicle Details</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Class of Vehicle</label>
+                                        <p id="v_vehicle_class" class="read-only-field"></p>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Chassis Number</label>
+                                        <p id="v_chassis_number" class="read-only-field"></p>
+                                    </div>
+                                    <div class="md:col-span-2">
+                                        <label class="block text-sm font-medium text-gray-700">Engine Number</label>
+                                        <p id="v_engine_number" class="read-only-field"></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <h3 class="text-lg font-semibold text-gray-800">Seller Details (Current Owner)</h3>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Full Name</label>
+                                    <p id="s_seller_name" class="read-only-field"></p>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Address (as per RC)</label>
+                                    <p id="s_seller_address" class="read-only-field"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="step-2" class="form-step space-y-6">
+                            <h2 class="text-xl font-semibold text-gray-900">Step 2: Buyer Details</h2>
+                            <div>
+                                <label for="buyer_pan" class="block text-sm font-medium text-gray-700">Enter Buyer's PAN
+                                    Number <span class="text-red-500">*</span></label>
+                                <input type="text" id="buyer_pan" name="buyer_pan" required placeholder="ABCDE1234F"
+                                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                <small id="pan-helper" class="text-xs text-gray-500">Press Tab or click outside to find
+                                    user.</small>
+                                <small id="pan-loading" class="hidden text-xs text-blue-500">Fetching details...</small>
+                            </div>
+
+                            <div id="buyer-details" class="hidden space-y-6">
+                                <hr>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Buyer's Full Name</label>
+                                    <p id="b_buyer_name" class="read-only-field"></p>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Buyer's Address</label>
+                                    <p id="b_buyer_address" class="read-only-field"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="step-3" class="form-step space-y-6">
+                            <h2 class="text-xl font-semibold text-gray-900">Step 3: Declaration</h2>
+                            <div class="flex items-start p-4 bg-gray-50 rounded-lg border">
+                                <div class="flex items-center h-5">
+                                    <input id="declaration" name="declaration" type="checkbox" required
+                                        class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                                </div>
+                                <div class="ml-3 text-sm">
+                                    <label for="declaration" class="font-medium text-gray-700">I (the seller) hereby
+                                        declare that I have sold this vehicle to the buyer mentioned in Step 2. All
+                                        information is true to the best of my knowledge. <span
+                                            class="text-red-500">*</span></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="wizard-nav" class="pt-6 border-t border-gray-200 mt-8">
+                            <div class="flex justify-between">
+                                <button type="button" id="prev-step-btn"
+                                    class="bg-white py-3 px-6 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                    Back
+                                </button>
+                                <button type="button" id="next-step-btn"
+                                    class="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700">
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div id="payment-step" class="hidden p-6 sm:p-8">
+                        <div id="payment-success"
+                            class="hidden p-4 my-4 bg-green-50 text-green-700 border border-green-200 rounded-lg"></div>
+                        <div id="payment-error"
+                            class="hidden p-4 my-4 bg-red-50 text-red-700 border border-red-200 rounded-lg"></div>
+
+                        <div id="payment-ui">
+                            <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                                <h3 class="text-lg font-medium text-gray-900">Payment Summary</h3>
+                                <div class="mt-4 flex justify-between items-center">
+                                    <p class="text-sm text-gray-600">Ownership Transfer Fee</p>
+                                    <p id="fee-amount" class="text-lg font-semibold text-gray-900">₹500.00</p>
+                                </div>
+                            </div>
+
+                            <div class="pt-6 mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+                                <button type="button" id="save-draft-btn"
+                                    class="w-full sm:w-auto bg-white py-3 px-6 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                    Save as Draft
+                                </button>
+                                <button type="button" id="pay-now-btn"
+                                    class="w-full sm:w-auto inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-green-600 hover:bg-green-700">
+                                    Pay Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // --- Global variables to store data between steps ---
+        let currentStep = 1;
+        const totalSteps = 3; // The wizard itself is 3 steps, payment is step 4
+
+        // This object will hold all our verified data
+        let transferApplication = {
+            application_id: null,
+            registration_number: null,
+            new_owner_id: null,
+            payment_id: null // Will store the pending payment ID
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- REPLACED: User & Auth (from your dashboard) ---
+            let userFullName = 'User';
+            let userId = null;
+            let userData = null;
+
+            try {
+                userData = JSON.parse(localStorage.getItem('myRtoUser'));
+
+                if (userData && userData.fullName && userData.id) {
+                    userFullName = userData.fullName;
+                    userId = userData.id; // This userId is now available to the whole script
+                } else {
+                    // No valid user data, redirect to login
+                    window.location.href = 'log.html';
+                    return; // Stop script execution
+                }
+            } catch (error) {
+                console.error('Error parsing user data, redirecting to login.', error);
+                window.location.href = 'log.html';
+                return; // Stop script execution
+            }
+
+            // Set user name in sidebar
+            document.getElementById('user-name').textContent = userFullName;
+
+
+            // --- REPLACED: Logout Logic (from your dashboard) ---
+            document.getElementById('logout-button').addEventListener('click', () => {
+                localStorage.removeItem('myRtoUser');
+                window.location.href = 'log.html';
+            });
+
+            // --- ADDED: Accordion Logic (from dashboard) ---
+            const serviceDropdowns = document.querySelectorAll('details.group > div.pl-9 > details');
+
+            serviceDropdowns.forEach(dropdown => {
+                dropdown.addEventListener('toggle', (event) => {
+                    if (dropdown.open) {
+                        // Close other open dropdowns at the same level
+                        serviceDropdowns.forEach(otherDropdown => {
+                            if (otherDropdown !== dropdown && otherDropdown.open) {
+                                otherDropdown.open = false;
+                            }
+                        });
+                    }
+                });
+            });
+
+            // --- ADDED: Auto-open parent dropdowns (from dashboard) ---
+            const activeLink = document.querySelector('nav a[aria-current="page"]');
+            if (activeLink) {
+                let parent = activeLink.closest('details');
+                while (parent) {
+                    parent.open = true;
+                    parent = parent.parentElement.closest('details');
+                }
+            }
+
+
+            // --- Get All Wizard Elements ---
+            const wizardForm = document.getElementById('transfer-wizard-form');
+            const prevBtn = document.getElementById('prev-step-btn');
+            const nextBtn = document.getElementById('next-step-btn');
+            const wizardNav = document.getElementById('wizard-nav');
+            const wizardHeader = document.getElementById('wizard-header');
+            const errorMessage = document.getElementById('form-error-message');
+
+            // --- Step 1 Elements ---
+            const regInput = document.getElementById('registration_number');
+            const regLoading = document.getElementById('reg-loading');
+            const sellerVehicleDetailsDiv = document.getElementById('seller-vehicle-details');
+
+            // --- Step 2 Elements ---
+            const panInput = document.getElementById('buyer_pan');
+            const panLoading = document.getElementById('pan-loading');
+            const buyerDetailsDiv = document.getElementById('buyer-details');
+
+            // --- Payment Elements ---
+            const paymentHeader = document.getElementById('payment-header');
+            const paymentStepDiv = document.getElementById('payment-step');
+            const paymentUIDiv = document.getElementById('payment-ui');
+            const paymentSuccessDiv = document.getElementById('payment-success');
+            const paymentErrorDiv = document.getElementById('payment-error');
+            const saveDraftBtn = document.getElementById('save-draft-btn');
+            const payNowBtn = document.getElementById('pay-now-btn');
+            const feeAmountEl = document.getElementById('fee-amount');
+
+            // --- Function to show a specific step ---
+            function showStep(stepNumber) {
+                document.querySelectorAll('.form-step').forEach(step => step.classList.remove('form-step-active'));
+                document.getElementById(`step-${stepNumber}`).classList.add('form-step-active');
+                document.querySelectorAll('.step-indicator').forEach((ind, index) => {
+                    ind.classList.remove('step-indicator-active', 'step-indicator-complete');
+                    if (index + 1 < stepNumber) ind.classList.add('step-indicator-complete');
+                    else if (index + 1 === stepNumber) ind.classList.add('step-indicator-active');
+                });
+                document.querySelectorAll('.step-line').forEach((line, index) => {
+                    line.classList.remove('step-line-complete');
+                    if (index < stepNumber - 1) line.classList.add('step-line-complete');
+                });
+                prevBtn.style.display = (stepNumber === 1) ? 'none' : 'inline-flex';
+                nextBtn.textContent = (stepNumber === totalSteps) ? 'Go to Payment' : 'Next';
+            }
+
+            // --- Function to validate inputs on the *current* step ---
+            function validateStep(stepNumber) {
+                let isValid = true;
+                errorMessage.classList.add('hidden');
+                const currentStepEl = document.getElementById(`step-${stepNumber}`);
+                const inputs = currentStepEl.querySelectorAll('input[required]');
+
+                inputs.forEach(input => {
+                    if (!input.value.trim()) isValid = false;
+                });
+                if (stepNumber === 3) {
+                    if (!document.getElementById('declaration').checked) isValid = false;
+                }
+
+                // Check if data has been auto-filled
+                if (stepNumber === 1 && !transferApplication.application_id) {
+                    isValid = false;
+                    errorMessage.textContent = 'Please enter a valid Registration Number to fetch details.';
+                }
+                if (stepNumber === 2 && !transferApplication.new_owner_id) {
+                    isValid = false;
+                    errorMessage.textContent = 'Please enter a valid Buyer PAN Number to fetch details.';
+                }
+                if (!isValid) errorMessage.classList.remove('hidden');
+                return isValid;
+            }
+
+            // --- API: Fetch Vehicle & Seller Details ---
+            regInput.addEventListener('blur', async () => {
+                const regNumber = regInput.value.trim();
+                if (!regNumber) return;
+
+                regLoading.classList.remove('hidden');
+                errorMessage.classList.add('hidden');
+                sellerVehicleDetailsDiv.classList.add('hidden');
+                transferApplication.application_id = null; // Reset
+
+                try {
+                    const response = await fetch('http://localhost:3000/api/vehicles/fetch-transfer-details', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ registration_number: regNumber, user_id: userId })
+                    });
+                    const data = await response.json();
+                    if (!response.ok) throw new Error(data.message);
+
+                    // --- SUCCESS: Populate Step 1 ---
+                    transferApplication.application_id = data.application_id;
+                    transferApplication.registration_number = regNumber; // Store for payment step
+
+                    document.getElementById('v_vehicle_class').textContent = data.vehicle_class;
+                    document.getElementById('v_chassis_number').textContent = data.chassis_number;
+                    document.getElementById('v_engine_number').textContent = data.engine_number;
+                    document.getElementById('s_seller_name').textContent = data.seller_name;
+                    document.getElementById('s_seller_address').textContent = `${data.seller_address}, ${data.seller_city}, ${data.state} - ${data.pincode}`;
+
+                    sellerVehicleDetailsDiv.classList.remove('hidden');
+                } catch (error) {
+                    errorMessage.textContent = error.message;
+                    errorMessage.classList.remove('hidden');
+                } finally {
+                    regLoading.classList.add('hidden');
+                }
+            });
+
+            // --- API: Fetch Buyer Details ---
+            panInput.addEventListener('blur', async () => {
+                const panNumber = panInput.value.trim();
+                if (!panNumber) return;
+
+                panLoading.classList.remove('hidden');
+                errorMessage.classList.add('hidden');
+                buyerDetailsDiv.classList.add('hidden');
+                transferApplication.new_owner_id = null; // Reset
+
+                try {
+                    const response = await fetch('http://localhost:3000/api/vehicles/fetch-buyer-details', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ pan_number: panNumber })
+                    });
+                    const data = await response.json();
+                    if (!response.ok) throw new Error(data.message);
+
+                    // --- SUCCESS: Populate Step 2 ---
+                    transferApplication.new_owner_id = data.user_id; // Store buyer's ID
+
+                    document.getElementById('b_buyer_name').textContent = data.full_name;
+                    document.getElementById('b_buyer_address').textContent = `${data.address_line1}, ${data.city}, ${data.state} - ${data.pincode}`;
+                    // REMOVED: document.getElementById('b_buyer_phone').textContent = data.phone_number;
+
+                    buyerDetailsDiv.classList.remove('hidden');
+                } catch (error) {
+                    errorMessage.textContent = error.message;
+                    errorMessage.classList.remove('hidden');
+                } finally {
+                    panLoading.classList.add('hidden');
+                }
+            });
+
+            // --- WIZARD NAVIGATION ---
+            nextBtn.addEventListener('click', () => {
+                if (!validateStep(currentStep)) return;
+
+                if (currentStep === totalSteps) {
+                    // --- Go to Payment ---
+                    wizardForm.classList.add('hidden');
+                    wizardHeader.classList.add('hidden');
+                    paymentHeader.classList.remove('hidden');
+                    paymentStepDiv.classList.remove('hidden');
+                    paymentErrorDiv.classList.add('hidden');
+                    paymentSuccessDiv.classList.add('hidden');
+                } else {
+                    currentStep++;
+                    showStep(currentStep);
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                errorMessage.classList.add('hidden');
+                currentStep--;
+                showStep(currentStep);
+            });
+
+            // --- Helper: Create Pending Payment (Save as Draft) ---
+            async function createPendingPayment() {
+                // Check if a draft has *already* been created
+                if (transferApplication.payment_id) {
+                    return { payment_id: transferApplication.payment_id, amount: 500.00 };
+                }
+
+                try {
+                    const response = await fetch('http://localhost:3000/api/vehicles/create-transfer-payment', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            application_id: transferApplication.application_id,
+                            new_owner_id: transferApplication.new_owner_id, // This matches routes/transfer.js
+                            user_id: userId
+                        })
+                    });
+                    const data = await response.json();
+                    if (!response.ok) throw new Error(data.message);
+
+                    // Store the new payment ID
+                    transferApplication.payment_id = data.payment_id;
+                    feeAmountEl.textContent = `₹${data.amount.toFixed(2)}`;
+                    return data;
+                } catch (error) {
+                    paymentErrorDiv.textContent = error.message || 'Failed to create payment record.';
+                    paymentErrorDiv.classList.remove('hidden');
+                    return null;
+                }
+            }
+
+            // --- Helper: Finalize Payment (Pay Now) ---
+            async function finalizePayment(payment_id) {
+                try {
+                    // --- THIS IS CORRECT ---
+                    const response = await fetch('http://localhost:3000/api/payments/complete-transfer', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            transaction_id: payment_id,
+                            newOwnerId: transferApplication.new_owner_id,
+                            registrationNumber: transferApplication.registration_number
+                        })
+                    });
+                    const data = await response.json();
+                    if (!response.ok) throw new Error(data.message);
+                    return data;
+                } catch (error) {
+                    paymentErrorDiv.textContent = error.message || 'Payment finalization failed.';
+                    paymentErrorDiv.classList.remove('hidden');
+                    return null;
+                }
+            }
+
+            // --- PAYMENT BUTTONS ---
+
+            // 1. Save as Draft
+            saveDraftBtn.addEventListener('click', async () => {
+                saveDraftBtn.disabled = true;
+                payNowBtn.disabled = true;
+                saveDraftBtn.textContent = 'Saving...';
+
+                const data = await createPendingPayment();
+
+                if (data) {
+                    paymentUIDiv.classList.add('hidden');
+                    paymentSuccessDiv.textContent = 'Application saved as draft. You can complete the payment later from your dashboard.';
+                    paymentSuccessDiv.classList.remove('hidden');
+                    setTimeout(() => window.location.href = 'dashboard.html', 3000);
+                } else {
+                    saveDraftBtn.disabled = false;
+                    payNowBtn.disabled = false;
+                    saveDraftBtn.textContent = 'Save as Draft';
+                }
+            });
+
+            // 2. Pay Now
+            payNowBtn.addEventListener('click', async () => {
+                saveDraftBtn.disabled = true;
+                payNowBtn.disabled = true;
+                payNowBtn.textContent = 'Processing...';
+                paymentErrorDiv.classList.add('hidden');
+
+                // Step A: Create the pending payment (or get existing one)
+                const pendingData = await createPendingPayment();
+
+                if (pendingData) {
+                    // Step B: Immediately try to finalize it
+                    const finalData = await finalizePayment(pendingData.payment_id);
+
+                    if (finalData) {
+                        // FINAL SUCCESS
+                        paymentUIDiv.classList.add('hidden');
+                        paymentSuccessDiv.textContent = 'Payment Successful! The ownership transfer is now complete.';
+                        paymentSuccessDiv.classList.remove('hidden');
+                        setTimeout(() => window.location.href = 'dashboard.html', 3000);
+                    } else {
+                        // Finalization failed, but draft is saved
+                        paymentErrorDiv.textContent += ' However, your application is saved as a draft.';
+                        payNowBtn.disabled = false;
+                        payNowBtn.textContent = 'Pay Now (Demo)';
+                        saveDraftBtn.classList.add('hidden'); // Hide draft button, it's already created
+                    }
+                } else {
+                    // Creation failed
+                    saveDraftBtn.disabled = false;
+                    payNowBtn.disabled = false;
+                    payNowBtn.textContent = 'Pay Now';
+                }
+            });
+
+            // --- Initial Page Load ---
+            showStep(currentStep); // Show the first step
+        });
+    </script>
+</body>
+
+</html>

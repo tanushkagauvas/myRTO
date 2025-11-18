@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - MyRTO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            height: 32px;
+            width: 32px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .logo-text {
+            color: white;
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .dropdown-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.2s ease-out, margin-top 0.3s ease-out;
+            max-height: 0;
+            opacity: 0;
+            margin-top: 0 !important;
+        }
+
+        details[open]>.dropdown-content {
+            max-height: 400px;
+            opacity: 1;
+            margin-top: 0.25rem !important;
+        }
+    </style>
+</head>
+
+<body class="h-full">
+
+    <div class="flex h-screen">
+        <aside class="w-64 flex flex-col bg-indigo-800 text-indigo-100 shadow-xl">
+            <div class="p-6">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                        </path>
+                    </svg>
+                    <span class="logo-text">MyRTO</span>
+                </div>
+            </div>
+
+            <nav class="flex-1 px-4 py-4 space-y-2">
+                <a href="dashboard.html" class="flex items-center space-x-3 px-3 py-2 bg-indigo-900 text-white rounded-lg" aria-current="page">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                    </svg>
+                    <span class="font-medium">Dashboard</span>
+                </a>
+
+                <details class="group">
+                    <summary class="flex items-center justify-between space-x-3 px-3 py-2 rounded-lg hover:bg-indigo-700 cursor-pointer transition-colors duration-200">
+                        <div class="flex items-center space-x-3">
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="font-medium">Services</span>
+                        </div>
+                        <svg class="h-5 w-5 transform group-open:rotate-90 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </summary>
+
+                    <div class="mt-2 space-y-1 pl-9">
+                        <details>
+                            <summary class="flex items-center justify-between px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white cursor-pointer transition-colors duration-200">
+                                <span>License Services</span>
+                                <svg class="h-5 w-5 transform open:rotate-90 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </summary>
+                            <div class="mt-1 space-y-1 pl-4 dropdown-content">
+                                <a href="llform.html" class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Apply for license</a>
+                                <a href="profile.html" class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Check Application</a>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="flex items-center justify-between px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white cursor-pointer transition-colors duration-200">
+                                <span>Vehicle Services</span>
+                                <svg class="h-5 w-5 transform open:rotate-90 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </summary>
+                            <div class="mt-1 space-y-1 pl-4 dropdown-content">
+                                <a href="vehiclereg.html" class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">New vehicle registration</a>
+                                <a href="renewal.html" class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Renewal of registration</a>
+                                <a href="transfer.html" class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Transfer of ownership</a>
+                                <a href="my_vehicles.html" class="block px-3 py-2 rounded-md text-white bg-indigo-700 transition-colors duration-200 text-sm font-medium">Check vehicle details</a>
+                            </div>
+                        </details>
+                    </div>
+                </details>
+
+                <a href="#applications" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-indigo-200 hover:text-white hover:bg-indigo-700 transition-colors duration-200">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125" />
+                    </svg>
+                    <span class="font-medium">My Applications</span>
+                </a>
+                <a href="my_payments.html" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-indigo-200 hover:text-white hover:bg-indigo-700 transition-colors duration-200">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                    </svg>
+                    <span class="font-medium">My Payments</span>
+                </a>
+            </nav>
+
+            <div class="mt-auto p-4">
+                <div class="flex items-center justify-between p-3 bg-indigo-700 rounded-lg">
+                    <div>
+                        <p class="text-sm">Welcome,</p>
+                        <p id="user-name" class="font-medium text-white">User</p>
+                    </div>
+                    <button id="logout-button" class="p-2 rounded-md text-indigo-200 hover:bg-red-500 hover:text-white transition-all duration-300 ease-in-out" title="Log Out">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto">
+            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+
+                <header class="mb-8 px-4 sm:px-0">
+                    <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">
+                        Welcome back, <span id="welcome-name" class="text-indigo-700">User</span>!
+                    </h1>
+                    <p class="mt-2 text-lg text-gray-600">Here's an overview of your RTO services and documents.</p>
+                </header>
+
+                <section class="mb-10 px-4 sm:px-0">
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 mb-5">Quick Actions</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <a href="llform.html" class="group bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl border-2 border-transparent hover:border-indigo-500 transition-all duration-300 ease-in-out">
+                            <div class="flex items-center space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="p-3 bg-indigo-100 rounded-xl">
+                                        <svg class="h-8 w-8 text-indigo-600 group-hover:text-indigo-700 transform group-hover:scale-110 transition-all duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100 4 2 2 0 000-4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h3m-3 4h3m-6-4v.01M9 16v.01" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-900">Apply for License</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Get your Learner's License.</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="vehiclereg.html" class="group bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl border-2 border-transparent hover:border-indigo-500 transition-all duration-300 ease-in-out">
+                            <div class="flex items-center space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="p-3 bg-indigo-100 rounded-xl">
+                                        <svg class="h-8 w-8 text-indigo-600 group-hover:text-indigo-700 transform group-hover:scale-110 transition-all duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-900">Register Vehicle</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Register a new or pre-owned vehicle.</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="transfer.html" class="group bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl border-2 border-transparent hover:border-indigo-500 transition-all duration-300 ease-in-out">
+                            <div class="flex items-center space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="p-3 bg-indigo-100 rounded-xl">
+                                        <svg class="h-8 w-8 text-indigo-600 group-hover:text-indigo-700 transform group-hover:scale-110 transition-all duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h18m-7.5-12L21 9m0 0L16.5 12M21 9H3" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-900">Transfer Ownership</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Transfer your vehicle to a new owner.</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="my_payments.html" class="group bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl border-2 border-transparent hover:border-indigo-500 transition-all duration-300 ease-in-out">
+                            <div class="flex items-center space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="p-3 bg-indigo-100 rounded-xl">
+                                        <svg class="h-8 w-8 text-indigo-600 group-hover:text-indigo-700 transform group-hover:scale-110 transition-all duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-900">My Payments</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Track your Payments hassle Free</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+
+                <section id="applications" class="px-4 sm:px-0">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="lg:col-span-3 bg-white p-6 sm:p-8 rounded-2xl shadow-xl">
+                            <h2 class="text-3xl font-bold tracking-tight text-gray-900 mb-6">My Applications</h2>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                                <a href="profile.html" class="flex items-center p-4 border-2 border-gray-100 rounded-xl bg-gray-50 hover:bg-white hover:border-indigo-500 hover:shadow-md transition-all duration-300 cursor-pointer group">
+                                    <div class="p-3 bg-white rounded-lg shadow-sm text-indigo-600 group-hover:bg-indigo-50">
+                                        <svg class="h-7 w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                                        </svg>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h3 class="font-bold text-gray-900 group-hover:text-indigo-700">View Your LL Form</h3>
+                                        <p class="text-sm text-gray-500">Check applied licenses</p>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <svg class="h-5 w-5 text-gray-400 group-hover:text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </a>
+
+                                <a href="my_vehicles.html" class="flex items-center p-4 border-2 border-gray-100 rounded-xl bg-gray-50 hover:bg-white hover:border-indigo-500 hover:shadow-md transition-all duration-300 cursor-pointer group">
+                                    <div class="p-3 bg-white rounded-lg shadow-sm text-indigo-600 group-hover:bg-indigo-50">
+                                        <svg class="h-7 w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V14.25m-2.25-2.25h-3.375c-.621 0-1.125.504-1.125 1.125V14.25m-2.25-2.25h3.375c.621 0 1.125.504 1.125 1.125V14.25m5.25-4.875c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125m16.5 0v2.25m-16.5-2.25V8.625z" />
+                                        </svg>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h3 class="font-bold text-gray-900 group-hover:text-indigo-700">View Your Vehicles</h3>
+                                        <p class="text-sm text-gray-500">My registered vehicles</p>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <svg class="h-5 w-5 text-gray-400 group-hover:text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- User Greeting & Auth Check ---
+            let userFullName = 'User';
+            let userId = null;
+            let userData = null;
+
+            try {
+                userData = JSON.parse(localStorage.getItem('myRtoUser'));
+
+                if (userData && userData.fullName && userData.id) {
+                    userFullName = userData.fullName;
+                    userId = userData.id;
+                } else {
+                    window.location.href = 'log.html';
+                }
+            } catch (error) {
+                console.error('Error parsing user data, redirecting to login.', error);
+                window.location.href = 'log.html';
+            }
+
+            // Set names
+            document.getElementById('user-name').textContent = userFullName;
+            document.getElementById('welcome-name').textContent = userFullName;
+
+            // --- Logout Logic ---
+            const logoutButton = document.getElementById('logout-button');
+            logoutButton.addEventListener('click', () => {
+                localStorage.removeItem('myRtoUser');
+                window.location.href = 'log.html';
+            });
+
+            // --- Accordion Logic ---
+            const serviceDropdowns = document.querySelectorAll('details.group > div.pl-9 > details');
+
+            serviceDropdowns.forEach(dropdown => {
+                dropdown.addEventListener('toggle', (event) => {
+                    if (dropdown.open) {
+                        serviceDropdowns.forEach(otherDropdown => {
+                            if (otherDropdown !== dropdown && otherDropdown.open) {
+                                otherDropdown.open = false;
+                            }
+                        });
+                    }
+                });
+            });
+
+            // --- Auto-open parent dropdowns ---
+            const activeLink = document.querySelector('nav a[aria-current="page"]');
+            if (activeLink) {
+                let parent = activeLink.closest('details');
+                while (parent) {
+                    parent.open = true;
+                    parent = parent.parentElement.closest('details');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

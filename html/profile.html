@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - MyRTO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .logo { display: flex; justify-content: center; align-items: center; gap: 0.5rem; }
+        .logo-icon { height: 32px; width: 32px; color: white; display: flex; align-items: center; justify-content: center; border-radius: 0.5rem; font-weight: 700; font-size: 1.25rem; }
+        .logo-text { color: white ; font-size: 1.75rem; font-weight: 700; }
+        .fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Smooth Dropdown Animation */
+        .dropdown-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.2s ease-out, margin-top 0.3s ease-out;
+            max-height: 0;
+            opacity: 0;
+            margin-top: 0 !important;
+        }
+        details[open] > .dropdown-content {
+            max-height: 400px; /* Adjust as needed */
+            opacity: 1;
+            margin-top: 0.25rem !important; /* Tailwind 'mt-1' */
+        }
+    </style>
+</head>
+<body class="h-full">
+    
+    <div class="flex h-screen">
+        <aside class="w-64 flex flex-col bg-indigo-800 text-indigo-100 shadow-xl">
+            <div class="p-6">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                    </svg>
+                    <span class="logo-text">MyRTO</span>
+                </div>
+            </div>
+            
+            <nav class="flex-1 px-4 py-4 space-y-2">
+                <a href="dashboard.html" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-indigo-200 hover:text-white hover:bg-indigo-700 transition-colors duration-200">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" /></svg>
+                    <span class="font-medium">Dashboard</span>
+                </a>
+                
+                <details class="group" open>
+                    <summary class="flex items-center justify-between space-x-3 px-3 py-2 rounded-lg hover:bg-indigo-700 cursor-pointer transition-colors duration-200">
+                        <div class="flex items-center space-x-3">
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <span class="font-medium">Services</span>
+                        </div>
+                        <svg class="h-5 w-5 transform group-open:rotate-90 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </summary>
+                    <div class="mt-2 space-y-1 pl-9">
+                        <details open>
+                            <summary class="flex items-center justify-between px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white cursor-pointer transition-colors duration-200">
+                                <span>License Services</span>
+                                <svg class="h-5 w-5 transform open:rotate-90 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </summary>
+                            <div class="mt-1 space-y-1 pl-4 dropdown-content" style="max-height: 400px; opacity: 1; margin-top: 0.25rem !important;">
+                                <a href="llform.html" class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Apply for license</a>
+                                <a href="profile.html" class="block px-3 py-2 rounded-md bg-indigo-900 text-white transition-colors duration-200 text-sm" aria-current="page">Check Licence status</a>
+                            </div>
+                        </details>
+                        <details>
+                            <summary class="flex items-center justify-between px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white cursor-pointer transition-colors duration-200">
+                                <span>Vehicle Services</span>
+                                <svg class="h-5 w-5 transform open:rotate-90 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </summary>
+                             <div class="mt-1 space-y-1 pl-4">
+                                <a href="vehiclereg.html"
+                                    class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">New
+                                    vehicle registration</a>
+                                <a href="renewal.html"
+                                    class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Renewal
+                                    of registration</a>
+                                <a href="transfer.html"
+                                    class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Transfer
+                                    of ownership</a>
+
+                                <a href="my_vehicles.html"
+                                    class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Check
+                                    vehicle details</a>
+                            </div>
+                        </details>
+                    </div>
+                </details>
+                
+                <a href="dashboard.html#applications" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-indigo-200 hover:text-white hover:bg-indigo-700 transition-colors duration-200">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125" /></svg>
+                    <span class="font-medium">My Applications</span>
+                </a>
+                
+                <a href="my_payments.html" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-indigo-200 hover:text-white hover:bg-indigo-700 transition-colors duration-200">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                    <span class="font-medium">My Payments</span>
+                </a>
+            </nav>
+
+            <div class="mt-auto p-4">
+                <div class="flex items-center justify-between p-3 bg-indigo-700 rounded-lg">
+                    <div>
+                        <p class="text-sm">Welcome,</p>
+                        <p id="user-name" class="font-medium text-white">User</p>
+                    </div>
+                    <button id="logout-button" class="p-2 rounded-md text-indigo-200 hover:bg-red-500 hover:text-white transition-all duration-300 ease-in-out" title="Log Out">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+                    </button>
+                </div>
+            </div>
+        </aside>
+        
+        <main class="flex-1 overflow-y-auto">
+            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+                
+                <header class="mb-8 px-4 sm:px-0">
+                    <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">
+                        My Profile & License Status
+                    </h1>
+                    <p class="mt-2 text-lg text-gray-600">All your personal and application details in one place.</p>
+                </header>
+
+                <div id="loading-spinner" class="flex justify-center items-center h-64">
+                    <svg class="animate-spin -ml-1 mr-3 h-10 w-10 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </div>
+                
+                <div id="no-application-message" class="hidden bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-lg shadow-md">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8.257 3.121c.954-1.65 3.532-1.65 4.486 0l6.248 10.82c.954 1.65-.236 3.75-2.242 3.75H4.25C2.244 17.69.76 15.59.904 13.94l6.248-10.82zM10 14a1 1 0 110-2 1 1 0 010 2zm-1-3a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm text-yellow-700">
+                                You have not applied for a Learner's License yet.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <section id="profile-card" class="hidden px-4 sm:px-0">
+                    <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
+                        
+                        <div class="p-6 sm:p-8 border-b border-gray-200 bg-gray-50">
+                            <div class="flex flex-col sm:flex-row justify-between sm:items-center">
+                                <div>
+                                    <h2 id="profile-name" class="text-3xl font-bold text-gray-900"></h2>
+                                    <p id="profile-ll-details" class="text-lg font-medium text-gray-500"></p>
+                                </div>
+                                <div class="mt-4 sm:mt-0" id="profile-ll-status-badge">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+                            
+                            <div class="space-y-4">
+                                <h3 class="text-lg font-semibold text-indigo-700 border-b pb-2">Personal Details</h3>
+                                <dl class="space-y-2">
+                                    <div>
+                                        <dt class="text-sm font-medium text-gray-500">Full Name</dt>
+                                        <dd id="detail-fullname" class="text-base font-semibold text-gray-900"></dd>
+                                    </div>
+                                    <div>
+                                        <dt class="text-sm font-medium text-gray-500">Date of Birth</dt>
+                                        <dd id="detail-dob" class="text-base font-semibold text-gray-900"></dd>
+                                    </div>
+                                    <div>
+                                        <dt class="text-sm font-medium text-gray-500">PAN Number</dt>
+                                        <dd id="detail-pan" class="text-base font-semibold text-gray-900"></dd>
+                                    </div>
+                                </dl>
+                            </div>
+
+                            <div class="space-y-4">
+                                <h3 class="text-lg font-semibold text-indigo-700 border-b pb-2">Application Status</h3>
+                                <dl class="space-y-2">
+                                    <div>
+                                        <dt class="text-sm font-medium text-gray-500">Learner's License Status</dt>
+                                        <dd id="detail-ll-status" class="text-base font-semibold"></dd>
+                                    </div>
+                                    <div>
+                                        <dt class="text-sm font-medium text-gray-500">Test Status</dt>
+                                        <dd id="detail-test-status" class="text-base font-semibold"></dd>
+                                    </div>
+                                    <div>
+                                        <dt class="text-sm font-medium text-gray-500">Scheduled Date & Time</dt>
+                                        <dd id="detail-test-datetime" class="text-base font-semibold text-gray-900"></dd>
+                                    </div>
+                                </dl>
+                            </div>
+
+                             <div class="space-y-4">
+                                <h3 class="text-lg font-semibold text-indigo-700 border-b pb-2">Contact Details</h3>
+                                <dl class="space-y-2">
+                                    <div>
+                                        <dt class="text-sm font-medium text-gray-500">Email Address</dt>
+                                        <dd id="detail-email" class="text-base font-semibold text-gray-900"></dd>
+                                    </div>
+                                    <!-- PHONE NUMBER REMOVED -->
+                                    <div>
+                                        <dt class="text-sm font-medium text-gray-500">Address</dt>
+                                        <dd id="detail-address" class="text-base font-semibold text-gray-900"></dd>
+                                    </div>
+                                </dl>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+                </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- User Greeting & Auth Check ---
+            let userFullName = 'User';
+            let userId = null;
+            let userData = null;
+
+            try {
+                userData = JSON.parse(localStorage.getItem('myRtoUser'));
+                if (userData && userData.fullName && userData.id) {
+                    userFullName = userData.fullName;
+                    userId = userData.id;
+                    document.getElementById('user-name').textContent = userFullName; 
+                } else {
+                    window.location.href = 'login.html'; 
+                }
+            } catch (error) {
+                console.error('Error parsing user data, redirecting to login.', error);
+                window.location.href = 'login.html'; 
+            }
+
+            // --- Logout Logic ---
+            const logoutButton = document.getElementById('logout-button');
+            logoutButton.addEventListener('click', () => {
+                localStorage.removeItem('myRtoUser');
+                window.location.href = 'login.html'; 
+            });
+
+            // --- Accordion Logic ---
+            const serviceDropdowns = document.querySelectorAll('details.group > div.pl-9 > details');
+            serviceDropdowns.forEach(dropdown => {
+                dropdown.addEventListener('toggle', (event) => {
+                    if (dropdown.open) {
+                        serviceDropdowns.forEach(otherDropdown => {
+                            if (otherDropdown !== dropdown && otherDropdown.open) {
+                                otherDropdown.open = false;
+                            }
+                        });
+                    }
+                });
+            });
+
+            // --- (NEW) Fetch Profile Data ---
+            
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const noAppMessage = document.getElementById('no-application-message');
+            const profileCard = document.getElementById('profile-card');
+
+            // Formats a date string (like 2025-11-14) into a user-friendly format
+            function formatDate(dateString) {
+                if (!dateString) return 'N/A';
+                const date = new Date(dateString);
+                if (isNaN(date.getTime())) { return 'N/A'; }
+                return date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            }
+            
+            // Helper to create status text
+            function getStatusText(status, colorClass) {
+                const statusText = status.charAt(0).toUpperCase() + status.slice(1);
+                return `<span class="font-bold ${colorClass}">${statusText}</span>`;
+            }
+
+            // Main function to populate the card
+            function populateProfile(app) {
+                // --- Header ---
+                document.getElementById('profile-name').textContent = app.full_name;
+                document.getElementById('profile-ll-details').textContent = `LLN: ${app.llno || 'N/A'} | Class: ${app.class || 'N/A'}`;
+                
+                // --- Personal Details ---
+                document.getElementById('detail-fullname').textContent = app.full_name;
+                document.getElementById('detail-dob').textContent = formatDate(app.dob);
+                document.getElementById('detail-pan').textContent = app.pan_number;
+
+                // --- Contact Details ---
+                document.getElementById('detail-email').textContent = app.email;
+                // PHONE REMOVED from here
+                document.getElementById('detail-address').textContent = `${app.address_line1}, ${app.city}, ${app.state} - ${app.pincode}`;
+                
+                // --- Application Status ---
+                let llStatusHTML, testStatusHTML;
+                let headerBadge = document.createElement('span');
+                headerBadge.className = 'px-4 py-1.5 text-base font-bold rounded-full';
+
+                const status = app.ll_status ? app.ll_status.toLowerCase() : 'unknown';
+
+                switch (status) {
+                    case 'pending':
+                        llStatusHTML = getStatusText('Pending Approval', 'text-yellow-700');
+                        headerBadge.classList.add('bg-yellow-100', 'text-yellow-800');
+                        headerBadge.textContent = 'Pending';
+                        break;
+                    case 'approved':
+                        llStatusHTML = getStatusText('LL Approved', 'text-green-700');
+                        headerBadge.classList.add('bg-green-100', 'text-green-800');
+                        headerBadge.textContent = 'Approved';
+                        break;
+                    case 'rejected':
+                        llStatusHTML = getStatusText('Application Rejected', 'text-red-700');
+                        headerBadge.classList.add('bg-red-100', 'text-red-800');
+                        headerBadge.textContent = 'Rejected';
+                        break;
+                    default:
+                        llStatusHTML = getStatusText(status, 'text-gray-700');
+                        headerBadge.classList.add('bg-gray-100', 'text-gray-800');
+                        headerBadge.textContent = status;
+                }
+                
+                document.getElementById('profile-ll-status-badge').innerHTML = ''; // Clear previous
+                document.getElementById('profile-ll-status-badge').appendChild(headerBadge);
+                document.getElementById('detail-ll-status').innerHTML = llStatusHTML;
+
+                // --- Test Status ---
+                switch (app.test_status) {
+                    case 'Scheduled':
+                        testStatusHTML = getStatusText('Scheduled', 'text-blue-700');
+                        document.getElementById('detail-test-datetime').textContent = `${formatDate(app.test_date)} at ${app.time_slot || 'N/A'}`;
+                        break;
+                    case 'Passed':
+                        testStatusHTML = getStatusText('Passed', 'text-green-700');
+                        document.getElementById('detail-test-datetime').textContent = formatDate(app.test_date);
+                        break;
+                    case 'Failed':
+                        testStatusHTML = getStatusText('Failed', 'text-red-700');
+                        document.getElementById('detail-test-datetime').textContent = formatDate(app.test_date);
+                        break;
+                    default:
+                        testStatusHTML = getStatusText('Not Scheduled', 'text-gray-700');
+                        document.getElementById('detail-test-datetime').textContent = 'N/A';
+                }
+                document.getElementById('detail-test-status').innerHTML = testStatusHTML;
+            }
+
+            async function loadProfile() {
+                if (!userId) {
+                    loadingSpinner.style.display = 'none';
+                    noAppMessage.classList.remove('hidden');
+                    return;
+                }
+
+                try {
+                    const response = await fetch(`http://localhost:3000/api/get-my-profile/${userId}`);
+                    
+                    if (!response.ok) {
+                        if (response.status === 404) {
+                            // User exists but no application found (which is fine, show "No Application")
+                            noAppMessage.classList.remove('hidden');
+                        } else {
+                            throw new Error('Server error');
+                        }
+                        return;
+                    }
+
+                    const profileData = await response.json();
+                    
+                    // Populate and show
+                    populateProfile(profileData);
+                    profileCard.classList.remove('hidden');
+
+                } catch (error) {
+                    console.error('Error loading profile:', error);
+                    noAppMessage.innerHTML = '<p class="text-red-600 text-center p-4">Could not load profile details. Please ensure the backend route exists.</p>';
+                    noAppMessage.classList.remove('hidden');
+                } finally {
+                    loadingSpinner.style.display = 'none';
+                }
+            }
+
+            loadProfile();
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Test - MyRTO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .logo { display: flex; justify-content: center; align-items: center; gap: 0.5rem; }
+        .logo-icon { height: 32px; width: 32px; color: white; display: flex; align-items: center; justify-content: center; border-radius: 0.5rem; font-weight: 700; font-size: 1.25rem; }
+        .logo-text { color: white ; font-size: 1.75rem; font-weight: 700; }
+        
+        /* Smooth Dropdown Animation */
+        .dropdown-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.2s ease-out, margin-top 0.3s ease-out;
+            max-height: 0;
+            opacity: 0;
+            margin-top: 0 !important;
+        }
+        details[open] > .dropdown-content {
+            max-height: 400px; /* Adjust as needed */
+            opacity: 1;
+            margin-top: 0.25rem !important; /* Tailwind 'mt-1' */
+        }
+        
+        /* Simple modal style for messages */
+        .message-modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            align-items: center;
+            justify-content: center;
+        }
+        .message-modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 24px;
+            border: 1px solid #888;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="h-full">
+    
+    <div class="flex h-screen">
+        <aside class="w-64 flex flex-col bg-indigo-800 text-indigo-100 shadow-xl">
+            <div class="p-6">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                    </svg>
+                    <span class="logo-text">MyRTO</span>
+                </div>
+            </div>
+
+            <nav class="flex-1 px-4 py-4 space-y-2">
+                <a href="dashboard.html" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-indigo-200 hover:text-white hover:bg-indigo-700 transition-colors duration-200">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" /></svg>
+                    <span class="font-medium">Dashboard</span>
+                </a>
+                
+                <details class="group">
+                    <summary class="flex items-center justify-between space-x-3 px-3 py-2 rounded-lg hover:bg-indigo-700 cursor-pointer transition-colors duration-200">
+                        <div class="flex items-center space-x-3">
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <span class="font-medium">Services</span>
+                        </div>
+                        <svg class="h-5 w-5 transform group-open:rotate-90 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </summary>
+                    
+                    <div class="mt-2 space-y-1 pl-9">
+                        <details>
+                            <summary class="flex items-center justify-between px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white cursor-pointer transition-colors duration-200">
+                                <span>License Services</span>
+                                <svg class="h-5 w-5 transform open:rotate-90 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </summary>
+                            <div class="mt-1 space-y-1 pl-4 dropdown-content">
+                                <a href="llform.html" class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Apply for learner's license</a>
+                                <a href="profile.html" class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Check Licence status</a>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="flex items-center justify-between px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white cursor-pointer transition-colors duration-200">
+                                <span>Vehicle Services</span>
+                                <svg class="h-5 w-5 transform open:rotate-90 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </summary>
+                            <div class="mt-1 space-y-1 pl-4 dropdown-content">
+                                <a href="vehiclereg.html" class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">New vehicle registration</a>
+                                <a href="renewal.html" class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Renewal of registration</a>
+                                <a href="transfer.html" class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Transfer of ownership</a>
+                                <a href="my_vehicles.html" class="block px-3 py-2 rounded-md text-indigo-200 hover:bg-indigo-700 hover:text-white transition-colors duration-200 text-sm">Check
+                                    vehicle details</a>
+                            </div>
+                        </details>
+                    </div>
+                </details>
+                
+                <a href="dashboard.html#applications" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-indigo-200 hover:text-white hover:bg-indigo-700 transition-colors duration-200">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125" /></svg>
+                    <span class="font-medium">My Applications</span>
+                </a>
+                <a href="my_payments.html" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-indigo-200 hover:text-white hover:bg-indigo-700 transition-colors duration-200">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                    <span class="font-medium">My Payments</span>
+                </a>
+            </nav>
+
+            <div class="mt-auto p-4">
+                <div class="flex items-center justify-between p-3 bg-indigo-700 rounded-lg">
+                    <div>
+                        <p class="text-sm">Welcome,</p>
+                        <p id="user-name" class="font-medium text-white">User</p>
+                    </div>
+                    <button id="logout-button" class="p-2 rounded-md text-indigo-200 hover:bg-red-500 hover:text-white transition-all duration-300 ease-in-out" title="Log Out">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+                    </button>
+                </div>
+            </div>
+        </aside>
+        
+        <main class="flex-1 overflow-y-auto bg-gray-100 flex items-center justify-center p-4 antialiased">
+            
+            <div class="bg-white p-8 sm:p-12 rounded-2xl shadow-2xl w-full max-w-lg border border-gray-100">
+
+                <form id="schedule-form">
+                    
+                    <section class="mb-10">
+                        <h1 class="text-3xl font-bold text-gray-900 mb-2">Schedule Driving Test</h1>
+                        <p class="text-gray-600 text-lg mb-8">Select an available date and time slot for your test.</p>
+                        
+                        <div class="space-y-6">
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Learner's License Number</label>
+                                <p id="lln-display" class="mt-1 text-lg font-semibold text-indigo-600 bg-gray-100 p-3 rounded-md"></p>
+                            </div>
+    
+                            <div>
+                                <label for="test-date" class="block text-sm font-medium text-gray-700">Select Test Date</label>
+                                <input type="date" id="test-date" name="test_date" required
+                                       class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            </div>
+    
+                            <div>
+                                <label for="time-slot" class="block text-sm font-medium text-gray-700">Select Time Slot</label>
+                                <select id="time-slot" name="time_slot" required
+                                        class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <option value="" disabled selected>Please select a time slot</option>
+                                    <option value="09:00-11:00">Morning (9:00 AM - 11:00 AM)</option>
+                                    <option value="11:00-13:00">Mid-day (11:00 AM - 1:00 PM)</option>
+                                    <option value="14:00-16:00">Afternoon (2:00 PM - 4:00 PM)</option>
+                                </select>
+                            </div>
+    
+                        </div>
+                    </section>
+    
+                    <div>
+                        <button type="submit"
+                                class="w-full flex items-center justify-center bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-bold py-4 px-6 rounded-lg shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transform hover:scale-105 transition-all duration-300">
+                            Confirm Booking
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <div id="message-modal" class="message-modal" style="display: none;">
+        <div class="message-modal-content">
+            <h3 id="modal-title" class="text-2xl font-bold mb-4"></h3>
+            <p id="modal-message" class="text-gray-700 mb-6"></p>
+            <button id="modal-close-btn" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- User Greeting & Auth Check ---
+            let userFullName = 'User';
+            let userId = null;
+
+            try {
+                const userData = JSON.parse(localStorage.getItem('myRtoUser'));
+                
+                if (userData && userData.fullName && userData.id) {
+                    userFullName = userData.fullName;
+                    userId = userData.id;
+                } else {
+                    window.location.href = 'login.html';
+                }
+            } catch (error) {
+                console.error('Error parsing user data, redirecting to login.', error);
+                window.location.href = 'login.html';
+            }
+
+            document.getElementById('user-name').textContent = userFullName;
+
+            // --- Logout Logic ---
+            const logoutButton = document.getElementById('logout-button');
+            logoutButton.addEventListener('click', () => {
+                localStorage.removeItem('myRtoUser');
+                window.location.href = 'login.html';
+            });
+
+            // --- Accordion Logic ---
+            const serviceDropdowns = document.querySelectorAll('details.group > div.pl-9 > details');
+            
+            serviceDropdowns.forEach(dropdown => {
+                dropdown.addEventListener('toggle', (event) => {
+                    if (dropdown.open) {
+                        serviceDropdowns.forEach(otherDropdown => {
+                            if (otherDropdown !== dropdown && otherDropdown.open) {
+                                otherDropdown.open = false;
+                            }
+                        });
+                    }
+                });
+            });
+
+            // --- Auto-open parent dropdowns on page load if child is active ---
+            const activeLink = document.querySelector('nav a[aria-current="page"]');
+            if (activeLink) {
+                let parent = activeLink.closest('details');
+                while (parent) {
+                    parent.open = true;
+                    parent = parent.parentElement.closest('details');
+                }
+            }
+
+            // --- Modal Logic ---
+            const modal = document.getElementById('message-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalMessage = document.getElementById('modal-message');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
+
+            function showModal(title, message, isError = false) {
+                modalTitle.textContent = title;
+                modalMessage.textContent = message;
+                modalTitle.className = `text-2xl font-bold mb-4 ${isError ? 'text-red-600' : 'text-green-600'}`;
+                modal.style.display = 'flex';
+            }
+
+            modalCloseBtn.onclick = () => { modal.style.display = 'none'; };
+            window.onclick = (event) => {
+                if (event.target == modal) { modal.style.display = 'none'; }
+            };
+
+            // --- Page-Specific Logic for Scheduling ---
+
+            // 1. Get LLN from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const llno = urlParams.get('llno');
+            
+            if (!llno) {
+                alert('No Learner\'s License Number provided. Redirecting...');
+                window.location.href = 'llform.html';
+                return; // Stop executing script
+            }
+
+            // 2. Display the LLN
+            document.getElementById('lln-display').textContent = llno;
+
+            // 3. Set minimum date for date picker to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('test-date').setAttribute('min', today);
+
+            // 4. Handle Form Submission
+            const scheduleForm = document.getElementById('schedule-form');
+            scheduleForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const testDate = document.getElementById('test-date').value;
+                const timeSlot = document.getElementById('time-slot').value;
+
+                if (!testDate || !timeSlot) {
+                    showModal('Missing Information', 'Please select both a date and a time slot.', true);
+                    return;
+                }
+
+                const data = {
+                    user_id: userId,
+                    llno: llno,
+                    test_date: testDate,
+                    time_slot: timeSlot
+                };
+
+                try {
+                    const response = await fetch('http://localhost:3000/api/schedule-test', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        showModal('Success!', `Test scheduled successfully for ${testDate} at ${timeSlot}. Your application ID is ${result.applicationId}.`);
+                        scheduleForm.reset();
+                        document.getElementById('lln-display').textContent = llno; // Re-populate LLN after reset
+                    } else {
+                        showModal('Error', `Scheduling failed: ${result.message}`, true);
+                    }
+                } catch (error) {
+                    console.error('Fetch error:', error);
+                    showModal('Network Error', 'Could not connect to the server.', true);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
